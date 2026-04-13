@@ -1,0 +1,22 @@
+# Archivos de Compilación Maven/Java
+target/
+*.class
+*.jar
+
+# Archivos de Eclipse IDE
+.metadata
+bin/
+tmp/
+*.tmp
+.settings/
+.project
+.classpath
+
+# Archivos del Sistema Operativo
+# Windows
+Thumbs.db
+ehthumbs.db
+[Dd]esktop.ini
+
+# Logs
+*.log
