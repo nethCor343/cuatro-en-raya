@@ -5,4 +5,10 @@
   <version>0.0.1-SNAPSHOT</version>
   <name> cuatro en raya</name>
   <description>Juego de cuatro en raya  utilizando arquitectura MVC y JavaFX</description>
+  
+  <properties>
+      <maven.compiler.source>25</maven.compiler.source>
+      <maven.compiler.target>25</maven.compiler.target>
+  </properties>
+  
 </project>
