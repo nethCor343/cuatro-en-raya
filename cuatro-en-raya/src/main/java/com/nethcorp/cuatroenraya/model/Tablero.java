@@ -11,6 +11,7 @@ public class Tablero {
 		this.columna = columna;
 		this.celdas = new EstadoCelda[fila][columna];
 		fichasColocadas = 0;
+		limpiarTablero();
 	}
 	
 	private void limpiarTablero() {
