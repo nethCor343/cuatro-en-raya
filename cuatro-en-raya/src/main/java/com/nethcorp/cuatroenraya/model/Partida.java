@@ -10,27 +10,27 @@ public class Partida {
         this.tablero = new Tablero(filas, columnas);
         this.turnos = new GestorTurnos();
         this.reglas = new ReglasJuego();
-        this.finalizado = false;
+        finalizado = false;
     }
 
     public ResultadoTurno jugar(int indiceColumna) {
-        if (finalizado) {
+        if(finalizado) {
         	return ResultadoTurno.JUEGO_TERMINADO;
         }
 
         EstadoCelda jugadorActual = turnos.obtenerTurnoActual();
         int filaColocada = tablero.dejarCaerFicha(indiceColumna, jugadorActual);
 
-        if (filaColocada == -1) {
+        if(filaColocada == -1) {
             return ResultadoTurno.MOVIMIENTO_INVALIDO;
         }
 
-        if (reglas.verificarVictoria(tablero, filaColocada, indiceColumna)) {
+        if(reglas.verificarVictoria(tablero, filaColocada, indiceColumna)) {
             finalizado = true;
             return ResultadoTurno.VICTORIA;
         }
 
-        if (reglas.verificarEmpate(tablero)) {
+        if(reglas.verificarEmpate(tablero)) {
             finalizado = true;
             return ResultadoTurno.EMPATE;
         }

@@ -28,8 +28,8 @@ public class Tablero {
 		}
 		
 		for(int indiceFila = fila - 1; indiceFila >= 0; indiceFila--) {
-			if(celdas[indiceFila][columna] == EstadoCelda.VACIO) {
-				celdas[indiceFila][columna] = jugador;
+			if(celdas[indiceFila][columnaFicha] == EstadoCelda.VACIO) {
+				celdas[indiceFila][columnaFicha] = jugador;
 				fichasColocadas++;
 				return indiceFila;
 			}
