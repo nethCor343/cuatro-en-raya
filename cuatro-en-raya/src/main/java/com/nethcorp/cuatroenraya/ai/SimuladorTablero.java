@@ -3,6 +3,10 @@ package com.nethcorp.cuatroenraya.ai;
 import com.nethcorp.cuatroenraya.model.EstadoCelda;
 import com.nethcorp.cuatroenraya.model.Tablero;
 
+import java.util.ArrayList;
+import java.util.List;
+
+
 public class SimuladorTablero {
 	private final int[][] matriz;
 	private final int fila;
@@ -38,6 +42,20 @@ public class SimuladorTablero {
 			}
 		}
 		return -1;
+	}
+	
+	public void deshacerGravedad(int c, int f) {
+		matriz[f][c]=0;
+	}
+	
+	public List<Integer> obtenerColumnaValidas() {
+		List<Integer> valido = new ArrayList<>();
+		for(int i=0; i<columna; i++) {
+			if(matriz[0][i]==0) {
+				valido.add(i);
+			}
+		}
+		return valido;
 	}
 	
 	public boolean verificarVictoria(int jug) {
@@ -82,7 +100,18 @@ public class SimuladorTablero {
 		}
 		
 		return false;
-		
+	}
+	
+	public int[][] obtenerMatriz() {
+		return matriz;
+	}
+	
+	public int obtenerFilas() {
+		return fila;
+	}
+	
+	public int obtenerColumna() {
+		return columna;
 	}
 	
 }
