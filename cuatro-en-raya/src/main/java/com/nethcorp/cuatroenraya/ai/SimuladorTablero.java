@@ -28,5 +28,61 @@ public class SimuladorTablero {
 				}
 			}
 		}
-	}	
+	}
+	
+	public int aplicarGravedad(int c, int idJug) {
+		for(int i = fila-1; i>=0; i--) {
+			if(matriz[i][c] == 0) {
+				matriz[i][c] = idJug;
+				return i;
+			}
+		}
+		return -1;
+	}
+	
+	public boolean verificarVictoria(int jug) {
+		//horizontal
+		for(int i=0; i<columna-3; i++) {
+			for(int j=0; j<fila;j++) {
+				if(matriz[j][i]==jug && matriz[j][i+1]==jug &&
+				   matriz[j][i+2]==jug && matriz[j][i+3]==jug) {
+					return true;
+				}
+			}
+		}
+		
+		//vertical
+		for(int i=0; i<columna; i++) {
+			for(int j=0; j<fila-3; j++) {
+				if(matriz[j][i]==jug && matriz[j+1][i]==jug &&
+				   matriz[j+2][i]==jug && matriz[j+3][i]==jug) {
+					return true;
+				}
+			}
+		}
+		
+		//diagonal \
+		for(int i=0; i<columna-3; i++) {
+			for(int j=0; j<fila-3; j++) {
+				if(matriz[j][i]==jug && matriz[j+1][i+1]==jug &&
+				   matriz[j+2][i+2]==jug && matriz[j+3][i+3]==jug) {
+					return true;
+				}
+			}
+		}
+		
+		//diagonal /
+		for(int i=0; i<columna-3; i++) {
+			for(int j=3; j<fila; j++) {
+				if(matriz[j][i]==jug && matriz[j-1][i+1]==jug &&
+				   matriz[j-2][i+2]==jug && matriz[j-3][i+3]==jug) {
+					return true;
+				}
+			}
+		}
+		
+		return false;
+		
+	}
+	
 }
