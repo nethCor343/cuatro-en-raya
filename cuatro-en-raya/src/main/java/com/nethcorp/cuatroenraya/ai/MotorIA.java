@@ -22,9 +22,9 @@ public class MotorIA {
         int mejPuntaje = Integer.MIN_VALUE;
         int mejColumna = -1;
         
-        List<Integer> cValidas = sim.obtenerColumnaValidas();
+        List<Integer> cValidas = sim.obtenerColumnasValidas();
         
-        int cCentral = sim.obtenerColumna()/2;
+        int cCentral = sim.obtenerColumnas()/2;
         if(cValidas.contains(cCentral)) {
             mejColumna = cCentral; 
         }else if(!cValidas.isEmpty()) {
@@ -46,7 +46,7 @@ public class MotorIA {
     }
 
     private int minimax(SimuladorTablero simTab, int profundidad, int alfa, int beta, boolean maximizando) {
-        boolean esTerminal = simTab.verificarVictoria(ia) || simTab.verificarVictoria(humano) || simTab.obtenerColumnaValidas().isEmpty();
+        boolean esTerminal = simTab.verificarVictoria(ia) || simTab.verificarVictoria(humano) || simTab.obtenerColumnasValidas().isEmpty();
         
         if(profundidad == 0 || esTerminal) {
             if(esTerminal) {
@@ -66,7 +66,7 @@ public class MotorIA {
 
         if(maximizando) {
             int maxEval = Integer.MIN_VALUE;
-            for(int col : simTab.obtenerColumnaValidas()) {
+            for(int col : simTab.obtenerColumnasValidas()) {
                 int fila = simTab.aplicarGravedad(col, ia);
                 int eval = minimax(simTab, profundidad - 1, alfa, beta, false);
                 simTab.deshacerGravedad(col, fila);
@@ -83,7 +83,7 @@ public class MotorIA {
         	
             int minEval = Integer.MAX_VALUE;
             
-            for(int col : simTab.obtenerColumnaValidas()) {
+            for(int col : simTab.obtenerColumnasValidas()) {
                 int fila = simTab.aplicarGravedad(col, humano);
                 int eval = minimax(simTab, profundidad - 1, alfa, beta, true);
                 simTab.deshacerGravedad(col, fila);

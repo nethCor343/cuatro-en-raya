@@ -8,9 +8,9 @@ public class CalculadorDeVentaja {
 
     public int analizarVentaja(SimuladorTablero simulador, int ai, int humano) {
         int puntaje = 0;
-        int[][] matriz = simulador.obtenerMatriz();
+        int[][] matriz = simulador.obtenerTablero();
         int fila = simulador.obtenerFilas();
-        int columna = simulador.obtenerColumna();
+        int columna = simulador.obtenerColumnas();
 
         int columCentro = columna/2;
         int fichasCentro = 0;
