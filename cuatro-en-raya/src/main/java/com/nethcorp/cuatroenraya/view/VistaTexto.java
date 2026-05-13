@@ -1,6 +1,7 @@
 package com.nethcorp.cuatroenraya.view;
 
 import com.nethcorp.cuatroenraya.model.*;
+import com.nethcorp.cuatroenraya.ai.*;
 import java.util.Scanner;
 
 public class VistaTexto {
@@ -34,6 +35,45 @@ public class VistaTexto {
             }
             System.out.println();
         }
+    }
+    
+    public Dificultad solicitarDificultadIA() {
+        System.out.println("\n DIFICULTAD ");
+        System.out.println("1. Facil");
+        System.out.println("2. Medio");
+        System.out.println("3. Dificil");
+        
+        int opcion = 0;
+        boolean entradaValida = false;
+
+        while(!entradaValida) {
+            System.out.print("Elige la dificultad (1-3): ");
+            
+            if(scanner.hasNextInt()) {
+                opcion = scanner.nextInt();
+                
+                if(opcion >= 1 && opcion <= 3) {
+                    entradaValida = true;
+                }else {
+                    System.out.println("Error: El numero debe ser 1, 2 o 3.");
+                }
+                
+            }else {
+                System.out.println("Error: dato invalido");
+                scanner.next();
+                
+            }
+        }
+
+        if(opcion == 1) {
+        	return Dificultad.FACIL;
+        }
+        
+        if(opcion == 2) {
+        	return Dificultad.MEDIO;
+        }
+        
+        return Dificultad.DIFICIL;
     }
 
     public int solicitarColumna(EstadoCelda jugadorActual) {

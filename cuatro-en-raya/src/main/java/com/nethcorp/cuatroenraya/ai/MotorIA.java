@@ -10,8 +10,8 @@ public class MotorIA {
 	private final int humano;
 	private final CalculadorDeVentaja calculador;
 	
-	public MotorIA(int profMaxima, EstadoCelda newIa) {
-		this.profMaxima = profMaxima;
+	public MotorIA(Dificultad dificultad, EstadoCelda newIa) {
+		profMaxima = dificultad.obtenerProfundidad();
 		ia = (newIa == EstadoCelda.JUGADOR_1) ? 1:2;
 		humano = (ia == 1) ? 2:1;
 		calculador = new CalculadorDeVentaja();
