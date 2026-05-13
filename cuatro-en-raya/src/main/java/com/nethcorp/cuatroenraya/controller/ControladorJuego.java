@@ -14,9 +14,13 @@ public class ControladorJuego {
     }
 
     public void iniciarPartida() {
-    	Dificultad  difElegida = vistaIU.solicitarDificultadIA();
+    	ModoJuego modo = vistaIU.solicitarModoJuego();
+    	MotorIA ia = null;
     	
-    	MotorIA ia = new MotorIA(difElegida, EstadoCelda.JUGADOR_2);
+    	if(modo == ModoJuego.HUMANO_VS_IA) {
+    		Dificultad difElegida = vistaIU.solicitarDificultadIA();
+    		ia = new MotorIA(difElegida, EstadoCelda.JUGADOR_2);
+    	}
 
         while(!partida.verificarFinalJuego()) {
             vistaIU.dibujarTablero(partida.obtenerTablero());
@@ -25,10 +29,10 @@ public class ControladorJuego {
 
             int columnaElegida;
             
-            if(jugadorActual == EstadoCelda.JUGADOR_1) {
-            	columnaElegida = vistaIU.solicitarColumna(partida.obtenerTurnoActual());
-            }else {
+            if(modo == ModoJuego.HUMANO_VS_IA && jugadorActual == EstadoCelda.JUGADOR_2) {
             	columnaElegida = ia.calcularMejorMovimiento(partida.obtenerTablero());
+            }else {
+            	columnaElegida = vistaIU.solicitarColumna(jugadorActual);
             }
 
             ResultadoTurno resultado = partida.jugar(columnaElegida);

@@ -2,6 +2,7 @@ package com.nethcorp.cuatroenraya.view;
 
 import com.nethcorp.cuatroenraya.model.*;
 import com.nethcorp.cuatroenraya.ai.*;
+import com.nethcorp.cuatroenraya.controller.*;
 import java.util.Scanner;
 
 public class VistaTexto {
@@ -87,6 +88,36 @@ public class VistaTexto {
         
         int columnaJugador = scanner.nextInt();
         return columnaJugador - 1;
+    }
+    
+    public ModoJuego solicitarModoJuego() {
+        System.out.println("      CUATRO EN RAYA      ");
+        System.out.println("1. Jugador1 vs Jugador2");
+        System.out.println("2. Jugador1 vs IA");
+        
+        int opcion = 0;
+        boolean entradaValida = false;
+        
+        while(!entradaValida) {
+            System.out.print("Elige el modo de juego (1 o 2): ");
+            
+            if(scanner.hasNextInt()) {
+                opcion = scanner.nextInt();
+                
+                if(opcion >= 1 && opcion <= 2) {
+                    entradaValida = true;
+                }else {
+                    System.out.println("Error: El numero debe ser 1 o 2");
+                }
+                
+            }else {
+                System.out.println("Error: dato invalido");
+                scanner.next();
+                
+            }
+        }
+
+        return (opcion == 1) ? ModoJuego.HUMANO_VS_HUMANO : ModoJuego.HUMANO_VS_IA;
     }
 
     public void mostrarMensajeVictoria(EstadoCelda ganador) {
