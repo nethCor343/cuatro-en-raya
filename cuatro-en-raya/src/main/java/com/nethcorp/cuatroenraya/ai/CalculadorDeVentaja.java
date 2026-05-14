@@ -6,79 +6,85 @@ public class CalculadorDeVentaja {
     private static final int PUNTOS_DOS_FICHAS = 10;
     private static final int PENALIZACION_TRES_OPONENTE = -80;
 
-    public int analizarVentaja(SimuladorTablero simulador, int ai, int humano) {
-        int puntaje = 0;
-        int[][] matriz = simulador.obtenerTablero();
-        int fila = simulador.obtenerFilas();
-        int columna = simulador.obtenerColumnas();
+    public int analizarVentaja(SimuladorTablero tableroSimulado, int fichaIA, int fichaHumano) {
+        int ventajaNeta = 0;
+        int[][] tablero = tableroSimulado.obtenerTablero();
+        int filas = tableroSimulado.obtenerFilas();
+        int columnas = tableroSimulado.obtenerColumnas();
 
-        int columCentro = columna/2;
-        int fichasCentro = 0;
-        for(int f = 0; f < fila; f++) {
-            if(matriz[f][columCentro] == ai) {
-            	fichasCentro++;
+        int columnaCentro = columnas / 2;
+        int fichaCentro = 0;
+        
+        for(int indiceFila = 0; indiceFila < filas; indiceFila++) {
+            if(tablero[indiceFila][columnaCentro] == fichaIA) {
+            	fichaCentro++;
             }
         }
         
-        puntaje += fichasCentro*3;
+        ventajaNeta += fichaCentro * 3;
 
-        for(int f=0; f<fila; f++) {
-            for(int c=0; c<columna-3; c++) {
-                puntaje += evaluarVector(new int[]{matriz[f][c],
-                		matriz[f][c+1], matriz[f][c+2], matriz[f][c+3]}, ai, humano);
+        for(int indiceFila = 0; indiceFila < filas; indiceFila++) {
+            for(int indiceColumna = 0; indiceColumna < columnas - 3; indiceColumna++) {
+                ventajaNeta += evaluarVector(new int[]{tablero[indiceFila][indiceColumna],
+                		tablero[indiceFila][indiceColumna + 1], tablero[indiceFila][indiceColumna + 2],
+                		tablero[indiceFila][indiceColumna + 3]}, fichaIA, fichaHumano);
             }
         }
         
-        for(int c=0; c<columna; c++) {
-            for(int f=0; f<fila-3; f++) {
-                puntaje += evaluarVector(new int[]{matriz[f][c],
-                		matriz[f+1][c], matriz[f+2][c], matriz[f+3][c]}, ai, humano);
+        for(int indiceColumna = 0; indiceColumna < columnas; indiceColumna++) {
+            for(int indiceFila = 0; indiceFila < filas - 3; indiceFila++) {
+                ventajaNeta += evaluarVector(new int[]{tablero[indiceFila][indiceColumna],
+                		tablero[indiceFila + 1][indiceColumna], tablero[indiceFila + 2][indiceColumna],
+                		tablero[indiceFila + 3][indiceColumna]}, fichaIA, fichaHumano);
             }
         }
         
-        for(int f=0; f<fila-3; f++) {
-            for(int c=0; c<columna-3; c++) {
-                puntaje += evaluarVector(new int[]{matriz[f][c],
-                		matriz[f+1][c+1], matriz[f+2][c+2], matriz[f+3][c+3]}, ai, humano);
+        for(int indiceFila = 0; indiceFila < filas - 3; indiceFila++) {
+            for(int indiceColumna = 0; indiceColumna < columnas - 3; indiceColumna++) {
+                ventajaNeta += evaluarVector(new int[]{tablero[indiceFila][indiceColumna],
+                		tablero[indiceFila + 1][indiceColumna + 1], tablero[indiceFila + 2][indiceColumna + 2],
+                		tablero[indiceFila + 3][indiceColumna + 3]}, fichaIA, fichaHumano);
             }
         }
         
-        for(int f=3; f<fila; f++) {
-            for (int c=0; c<columna-3; c++) {
-                puntaje += evaluarVector(new int[]{matriz[f][c],
-                		matriz[f-1][c+1], matriz[f-2][c+2], matriz[f-3][c+3]}, ai, humano);
+        for(int indiceFila = 3; indiceFila < filas; indiceFila++) {
+            for (int indiceColumna = 0; indiceColumna < columnas - 3; indiceColumna++) {
+                ventajaNeta += evaluarVector(new int[]{tablero[indiceFila][indiceColumna],
+                		tablero[indiceFila - 1][indiceColumna + 1], tablero[indiceFila - 2][indiceColumna + 2],
+                		tablero[indiceFila - 3][indiceColumna + 3]}, fichaIA, fichaHumano);
             }
         }
 
-        return puntaje;
+        return ventajaNeta;
     }
 
-    private int evaluarVector(int[] vector, int ai, int humano) {
-        int fichasAI = 0, fichasHumano = 0, vacios = 0;
+    private int evaluarVector(int[] vector, int fichaIA, int fichaHumano) {
+        int contadorIA, contadorHumano, contadorVacio;
+        contadorIA = contadorHumano = contadorVacio = 0;
 
-        for(int i=0; i<vector.length; i++) {
-        	if(vector[i]==ai) {
-        		fichasAI++;
-        	}else if(vector[i]==humano) {
-        		fichasHumano++;
+        for(int indice = 0; indice < vector.length; indice++) {
+        	if(vector[indice] == fichaIA) {
+        		contadorIA++;
+        	}else if(vector[indice] == fichaHumano) {
+        		contadorHumano++;
         	}else {
-        		vacios++;
+        		contadorVacio++;
         	}
         }
         
-        if(fichasAI == 4) {
+        if(contadorIA == 4) {
         	return PUNTOS_VICTORIA;
         }
         
-        if(fichasAI == 3 && vacios == 1) {
+        if(contadorIA == 3 && contadorVacio == 1) {
         	return PUNTOS_TRES_FICHAS;
         }
         
-        if(fichasAI == 2 && vacios == 2) {
+        if(contadorIA == 2 && contadorVacio == 2) {
         	return PUNTOS_DOS_FICHAS;
         }
         
-        if(fichasHumano == 3 && vacios == 1) {
+        if(contadorHumano == 3 && contadorVacio == 1) {
         	return PENALIZACION_TRES_OPONENTE;
         }
 

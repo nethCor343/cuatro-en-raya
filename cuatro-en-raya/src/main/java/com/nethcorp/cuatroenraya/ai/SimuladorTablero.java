@@ -34,7 +34,7 @@ public class SimuladorTablero {
 	}
 	
 	public int aplicarGravedad(int indiceColumna, int fichaJugador) {
-		for(int indiceFila = filas-1; indiceFila >= 0; indiceFila--) {
+		for(int indiceFila = filas - 1; indiceFila >= 0; indiceFila--) {
 			if(tablero[indiceFila][indiceColumna] == 0) {
 				tablero[indiceFila][indiceColumna] = fichaJugador;
 				return indiceFila;
