@@ -5,97 +5,102 @@ import com.nethcorp.cuatroenraya.model.Tablero;
 import java.util.List;
 
 public class MotorIA {
-	private final int profMaxima;
-	private final int ia;
-	private final int humano;
-	private final CalculadorDeVentaja calculador;
+	private final int profundidadMaxima;
+	private final int fichaIA;
+	private final int fichaHumano;
+	private final CalculadorDeVentaja evaluadorVentaja;
 	
-	public MotorIA(Dificultad dificultad, EstadoCelda newIa) {
-		profMaxima = dificultad.obtenerProfundidad();
-		ia = (newIa == EstadoCelda.JUGADOR_1) ? 1:2;
-		humano = (ia == 1) ? 2:1;
-		calculador = new CalculadorDeVentaja();
+	public MotorIA(Dificultad dificultad, EstadoCelda jugadorIA) {
+		profundidadMaxima = dificultad.obtenerProfundidad();
+		fichaIA = (jugadorIA == EstadoCelda.JUGADOR_1) ? 1:2;
+		fichaHumano = (fichaIA == 1) ? 2:1;
+		evaluadorVentaja = new CalculadorDeVentaja();
 	}
 	
-	public int calcularMejorMovimiento(Tablero tabReal) {
-        SimuladorTablero sim = new SimuladorTablero(tabReal);
-        int mejPuntaje = Integer.MIN_VALUE;
-        int mejColumna = -1;
+	public int calcularMejorMovimiento(Tablero tableroReal) {
+        SimuladorTablero tableroSimulado = new SimuladorTablero(tableroReal);
+        int mejorPuntaje = Integer.MIN_VALUE;
+        int mejorColumna = -1;
         
-        List<Integer> cValidas = sim.obtenerColumnasValidas();
+        List<Integer> columnasValidas = tableroSimulado.obtenerColumnasValidas();
+        int columnaCentral = tableroSimulado.obtenerColumnas() / 2;
         
-        int cCentral = sim.obtenerColumnas()/2;
-        if(cValidas.contains(cCentral)) {
-            mejColumna = cCentral; 
-        }else if(!cValidas.isEmpty()) {
-            mejColumna = cValidas.get(0);
+        if(columnasValidas.contains(columnaCentral)) {
+            mejorColumna = columnaCentral; 
+        }else if(!columnasValidas.isEmpty()) {
+            mejorColumna = columnasValidas.get(0);
         }
 
-        for(int col : cValidas) {
-            int filaCaida = sim.aplicarGravedad(col, ia);
-            int puntaje = minimax(sim, profMaxima - 1, Integer.MIN_VALUE, Integer.MAX_VALUE, false);
-            sim.deshacerGravedad(col, filaCaida);
+        for(int indice = 0; indice < columnasValidas.size(); indice++) {
+        	int columna = columnasValidas.get(indice);
+            int filaCaida = tableroSimulado.aplicarGravedad(columna, fichaIA);
+            int puntaje = minimax(tableroSimulado, profundidadMaxima - 1, Integer.MIN_VALUE, Integer.MAX_VALUE, false);
+            tableroSimulado.deshacerGravedad(columna, filaCaida);
 
-            if(puntaje > mejPuntaje) {
-                mejPuntaje = puntaje;
-                mejColumna = col;
+            if(puntaje > mejorPuntaje) {
+                mejorPuntaje = puntaje;
+                mejorColumna = columna;
             }
         }
         
-        return mejColumna;
+        return mejorColumna;
     }
-
-    private int minimax(SimuladorTablero simTab, int profundidad, int alfa, int beta, boolean maximizando) {
-        boolean esTerminal = simTab.verificarVictoria(ia) || simTab.verificarVictoria(humano) || simTab.obtenerColumnasValidas().isEmpty();
+  
+    private int minimax(SimuladorTablero tableroSimulado, int profundidad, int alfa, int beta, boolean turnoIA) {
+        boolean juegoTerminado = tableroSimulado.verificarVictoria(fichaIA) || tableroSimulado.verificarVictoria(fichaHumano) ||
+        		tableroSimulado.obtenerColumnasValidas().isEmpty();
         
-        if(profundidad == 0 || esTerminal) {
-            if(esTerminal) {
-                if(simTab.verificarVictoria(ia)) {
+        if(profundidad == 0 || juegoTerminado) {
+            if(juegoTerminado) {
+                if(tableroSimulado.verificarVictoria(fichaIA)) {
                 	return CalculadorDeVentaja.PUNTOS_VICTORIA;
                 }
                 
-                if(simTab.verificarVictoria(humano)) {
-                	return - CalculadorDeVentaja.PUNTOS_VICTORIA;
+                if(tableroSimulado.verificarVictoria(fichaHumano)) {
+                	return -CalculadorDeVentaja.PUNTOS_VICTORIA;
                 }
                 return 0;
                 
             }
-            return calculador.analizarVentaja(simTab, ia, humano);
+            return evaluadorVentaja.analizarVentaja(tableroSimulado, fichaIA, fichaHumano);
             
         }
 
-        if(maximizando) {
-            int maxEval = Integer.MIN_VALUE;
-            for(int col : simTab.obtenerColumnasValidas()) {
-                int fila = simTab.aplicarGravedad(col, ia);
-                int eval = minimax(simTab, profundidad - 1, alfa, beta, false);
-                simTab.deshacerGravedad(col, fila);
+        if(turnoIA) {
+            int puntajeMaximoRuta = Integer.MIN_VALUE;
+            for(int columna : tableroSimulado.obtenerColumnasValidas()) {
+                int fila = tableroSimulado.aplicarGravedad(columna, fichaIA);
+                int puntajeRamaActual = minimax(tableroSimulado, profundidad - 1, alfa, beta, false);
+                tableroSimulado.deshacerGravedad(columna, fila);
                 
-                maxEval = Math.max(maxEval, eval);
-                alfa = Math.max(alfa, eval);
+                puntajeMaximoRuta = Math.max(puntajeMaximoRuta, puntajeRamaActual);
+                alfa = Math.max(alfa, puntajeRamaActual);
                 if(beta <= alfa) {
                 	break;
                 }
             }
-            return maxEval;
             
+            return puntajeMaximoRuta;
+
         }else {
         	
-            int minEval = Integer.MAX_VALUE;
+            int puntajeMinimoRuta = Integer.MAX_VALUE;
             
-            for(int col : simTab.obtenerColumnasValidas()) {
-                int fila = simTab.aplicarGravedad(col, humano);
-                int eval = minimax(simTab, profundidad - 1, alfa, beta, true);
-                simTab.deshacerGravedad(col, fila);
+            for(int columna : tableroSimulado.obtenerColumnasValidas()) {
+                int fila = tableroSimulado.aplicarGravedad(columna, fichaHumano);
+                int puntajeRamaActual = minimax(tableroSimulado, profundidad - 1, alfa, beta, true);
+                tableroSimulado.deshacerGravedad(columna, fila);
                 
-                minEval = Math.min(minEval, eval);
-                beta = Math.min(beta, eval);
+                puntajeMinimoRuta = Math.min(puntajeMinimoRuta, puntajeRamaActual);
+                beta = Math.min(beta, puntajeRamaActual);
                 
                 if(beta <= alfa) {
                 	break;
                 }
             }
-            return minEval;
+            
+            return puntajeMinimoRuta;
         }
     }
+    
 }
