@@ -1991,8 +1991,8 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": -16,
-											"top": 128,
+											"left": -464,
+											"top": 112,
 											"height": 13
 										},
 										{
@@ -2002,9 +2002,9 @@
 												"$ref": "AAAAAAGdiFtP9ZIDepQ="
 											},
 											"font": "Arial;13;1",
-											"left": 485,
-											"top": 174,
-											"width": 327,
+											"left": 261,
+											"top": 166,
+											"width": 567,
 											"height": 13,
 											"text": "com.nethcorp.cuatroenraya.controller"
 										},
@@ -2016,8 +2016,8 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": -16,
-											"top": 128,
+											"left": -464,
+											"top": 112,
 											"width": 142.33349609375,
 											"height": 13,
 											"text": "(from modelo-de-diseño)"
@@ -2030,16 +2030,16 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": -16,
-											"top": 128,
+											"left": -464,
+											"top": 112,
 											"height": 13,
 											"horizontalAlignment": 1
 										}
 									],
 									"font": "Arial;13;0",
-									"left": 480,
-									"top": 167,
-									"width": 337,
+									"left": 256,
+									"top": 159,
+									"width": 577,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGdiFtP9ZIEHpg="
@@ -2065,10 +2065,10 @@
 							],
 							"font": "Arial;13;0",
 							"containerChangeable": true,
-							"left": 480,
-							"top": 152,
-							"width": 337,
-							"height": 297,
+							"left": 256,
+							"top": 144,
+							"width": 577,
+							"height": 377,
 							"nameCompartment": {
 								"$ref": "AAAAAAGdiFtP9ZIDepQ="
 							}
@@ -2101,8 +2101,8 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": -600,
-											"top": 40,
+											"left": -1064,
+											"top": 296,
 											"height": 13
 										},
 										{
@@ -2112,9 +2112,9 @@
 												"$ref": "AAAAAAGdiF0Z4JIzcNs="
 											},
 											"font": "Arial;13;1",
-											"left": 533,
-											"top": 231,
-											"width": 134,
+											"left": 301,
+											"top": 359,
+											"width": 308.673828125,
 											"height": 13,
 											"text": "ControladorJuego"
 										},
@@ -2126,8 +2126,8 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": -600,
-											"top": 40,
+											"left": -1064,
+											"top": 296,
 											"width": 253.6015625,
 											"height": 13,
 											"text": "(from com.nethcorp.cuatroenraya.controller)"
@@ -2140,16 +2140,16 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": -600,
-											"top": 40,
+											"left": -1064,
+											"top": 296,
 											"height": 13,
 											"horizontalAlignment": 1
 										}
 									],
 									"font": "Arial;13;0",
-									"left": 528,
-									"top": 224,
-									"width": 144,
+									"left": 296,
+									"top": 352,
+									"width": 318.673828125,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGdiF0Z4JI0TFU="
@@ -2173,11 +2173,47 @@
 									"model": {
 										"$ref": "AAAAAAGdiF0Z4JIw0Z8="
 									},
+									"subViews": [
+										{
+											"_type": "UMLAttributeView",
+											"_id": "AAAAAAGeLKBzZ6O7qVU=",
+											"_parent": {
+												"$ref": "AAAAAAGdiF0Z4JI4kew="
+											},
+											"model": {
+												"$ref": "AAAAAAGeLKBzQaO4N7Q="
+											},
+											"font": "Arial;13;0",
+											"left": 301,
+											"top": 382,
+											"width": 308.673828125,
+											"height": 13,
+											"text": "-partida: Partida {readOnly}",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLAttributeView",
+											"_id": "AAAAAAGeLKCHhKRpvyI=",
+											"_parent": {
+												"$ref": "AAAAAAGdiF0Z4JI4kew="
+											},
+											"model": {
+												"$ref": "AAAAAAGeLKCHYKRmGM4="
+											},
+											"font": "Arial;13;0",
+											"left": 301,
+											"top": 397,
+											"width": 308.673828125,
+											"height": 13,
+											"text": "-vistaIU: VistaTexto {readOnly}",
+											"horizontalAlignment": 0
+										}
+									],
 									"font": "Arial;13;0",
-									"left": 528,
-									"top": 249,
-									"width": 144,
-									"height": 10
+									"left": 296,
+									"top": 377,
+									"width": 318.673828125,
+									"height": 38
 								},
 								{
 									"_type": "UMLOperationCompartmentView",
@@ -2188,11 +2224,47 @@
 									"model": {
 										"$ref": "AAAAAAGdiF0Z4JIw0Z8="
 									},
+									"subViews": [
+										{
+											"_type": "UMLOperationView",
+											"_id": "AAAAAAGeLKFftad+ybE=",
+											"_parent": {
+												"$ref": "AAAAAAGdiF0Z4JI5e24="
+											},
+											"model": {
+												"$ref": "AAAAAAGeLKFfkad7Ma8="
+											},
+											"font": "Arial;13;0",
+											"left": 301,
+											"top": 420,
+											"width": 308.673828125,
+											"height": 13,
+											"text": "+ControladorJuego(partida: Partida, vista: VistaTexto)",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLOperationView",
+											"_id": "AAAAAAGeLKJPpalt8P8=",
+											"_parent": {
+												"$ref": "AAAAAAGdiF0Z4JI5e24="
+											},
+											"model": {
+												"$ref": "AAAAAAGeLKJPgalqVgc="
+											},
+											"font": "Arial;13;0",
+											"left": 301,
+											"top": 435,
+											"width": 308.673828125,
+											"height": 13,
+											"text": "+iniciarPartida(): void",
+											"horizontalAlignment": 0
+										}
+									],
 									"font": "Arial;13;0",
-									"left": 528,
-									"top": 259,
-									"width": 144,
-									"height": 10
+									"left": 296,
+									"top": 415,
+									"width": 318.673828125,
+									"height": 38
 								},
 								{
 									"_type": "UMLReceptionCompartmentView",
@@ -2205,8 +2277,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": -360,
-									"top": 8,
+									"left": -592,
+									"top": 136,
 									"width": 10,
 									"height": 10
 								},
@@ -2221,8 +2293,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": -360,
-									"top": 8,
+									"left": -592,
+									"top": 136,
 									"width": 10,
 									"height": 10
 								}
@@ -2232,9 +2304,9 @@
 							},
 							"font": "Arial;13;0",
 							"containerChangeable": true,
-							"left": 528,
-							"top": 224,
-							"width": 144,
+							"left": 296,
+							"top": 352,
+							"width": 318.673828125,
 							"height": 112,
 							"nameCompartment": {
 								"$ref": "AAAAAAGdiF0Z4JIzcNs="
@@ -6661,8 +6733,8 @@
 												"$ref": "AAAAAAGeLJJJjF+eMfM="
 											},
 											"font": "Arial;13;0",
-											"left": 645,
-											"top": 357,
+											"left": 613,
+											"top": 213,
 											"width": 147.3544921875,
 											"height": 13,
 											"text": "«enumeration»"
@@ -6674,8 +6746,8 @@
 												"$ref": "AAAAAAGeLJJJjF+eMfM="
 											},
 											"font": "Arial;13;1",
-											"left": 645,
-											"top": 372,
+											"left": 613,
+											"top": 228,
 											"width": 147.3544921875,
 											"height": 13,
 											"text": "ModoJuego"
@@ -6688,8 +6760,8 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": 248,
-											"top": -96,
+											"left": 184,
+											"top": -384,
 											"width": 253.6015625,
 											"height": 13,
 											"text": "(from com.nethcorp.cuatroenraya.controller)"
@@ -6702,15 +6774,15 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": 248,
-											"top": -96,
+											"left": 184,
+											"top": -384,
 											"height": 13,
 											"horizontalAlignment": 1
 										}
 									],
 									"font": "Arial;13;0",
-									"left": 640,
-									"top": 352,
+									"left": 608,
+									"top": 208,
 									"width": 157.3544921875,
 									"height": 38,
 									"stereotypeLabel": {
@@ -6737,8 +6809,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 136,
-									"top": -64,
+									"left": 104,
+									"top": -208,
 									"width": 10,
 									"height": 10
 								},
@@ -6753,8 +6825,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 136,
-									"top": -64,
+									"left": 104,
+									"top": -208,
 									"width": 10,
 									"height": 10
 								},
@@ -6769,8 +6841,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 136,
-									"top": -64,
+									"left": 104,
+									"top": -208,
 									"width": 10,
 									"height": 10
 								},
@@ -6785,8 +6857,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 136,
-									"top": -64,
+									"left": 104,
+									"top": -208,
 									"width": 10,
 									"height": 10
 								},
@@ -6810,8 +6882,8 @@
 												"$ref": "AAAAAAGeLJJ4imCbGDI="
 											},
 											"font": "Arial;13;0",
-											"left": 645,
-											"top": 395,
+											"left": 613,
+											"top": 251,
 											"width": 147.3544921875,
 											"height": 13,
 											"text": "HUMANO_VS_HUMANO",
@@ -6827,8 +6899,8 @@
 												"$ref": "AAAAAAGeLJKOwWFJNO4="
 											},
 											"font": "Arial;13;0",
-											"left": 645,
-											"top": 410,
+											"left": 613,
+											"top": 266,
 											"width": 147.3544921875,
 											"height": 13,
 											"text": "HUMANO_VS_IA",
@@ -6836,8 +6908,8 @@
 										}
 									],
 									"font": "Arial;13;0",
-									"left": 640,
-									"top": 390,
+									"left": 608,
+									"top": 246,
 									"width": 157.3544921875,
 									"height": 38
 								}
@@ -6847,8 +6919,8 @@
 							},
 							"font": "Arial;13;0",
 							"containerChangeable": true,
-							"left": 640,
-							"top": 352,
+							"left": 608,
+							"top": 208,
 							"width": 157.3544921875,
 							"height": 76,
 							"nameCompartment": {
@@ -8219,7 +8291,88 @@
 							"_parent": {
 								"$ref": "AAAAAAGdiFtP9JIAUzU="
 							},
-							"name": "ControladorJuego"
+							"name": "ControladorJuego",
+							"attributes": [
+								{
+									"_type": "UMLAttribute",
+									"_id": "AAAAAAGeLKBzQaO4N7Q=",
+									"_parent": {
+										"$ref": "AAAAAAGdiF0Z4JIw0Z8="
+									},
+									"name": "partida",
+									"visibility": "private",
+									"type": {
+										"$ref": "AAAAAAGdiFKUV5E5L8I="
+									},
+									"isReadOnly": true
+								},
+								{
+									"_type": "UMLAttribute",
+									"_id": "AAAAAAGeLKCHYKRmGM4=",
+									"_parent": {
+										"$ref": "AAAAAAGdiF0Z4JIw0Z8="
+									},
+									"name": "vistaIU",
+									"visibility": "private",
+									"type": {
+										"$ref": "AAAAAAGeLJevuHekpWI="
+									},
+									"isReadOnly": true
+								}
+							],
+							"operations": [
+								{
+									"_type": "UMLOperation",
+									"_id": "AAAAAAGeLKFfkad7Ma8=",
+									"_parent": {
+										"$ref": "AAAAAAGdiF0Z4JIw0Z8="
+									},
+									"name": "ControladorJuego",
+									"parameters": [
+										{
+											"_type": "UMLParameter",
+											"_id": "AAAAAAGeLKIYCqgqcgY=",
+											"_parent": {
+												"$ref": "AAAAAAGeLKFfkad7Ma8="
+											},
+											"name": "partida",
+											"type": {
+												"$ref": "AAAAAAGdiFKUV5E5L8I="
+											}
+										},
+										{
+											"_type": "UMLParameter",
+											"_id": "AAAAAAGeLKIYC6gr7ws=",
+											"_parent": {
+												"$ref": "AAAAAAGeLKFfkad7Ma8="
+											},
+											"name": "vista",
+											"type": {
+												"$ref": "AAAAAAGeLJevuHekpWI="
+											}
+										}
+									]
+								},
+								{
+									"_type": "UMLOperation",
+									"_id": "AAAAAAGeLKJPgalqVgc=",
+									"_parent": {
+										"$ref": "AAAAAAGdiF0Z4JIw0Z8="
+									},
+									"name": "iniciarPartida",
+									"parameters": [
+										{
+											"_type": "UMLParameter",
+											"_id": "AAAAAAGeLKLiZqoZzQs=",
+											"_parent": {
+												"$ref": "AAAAAAGeLKJPgalqVgc="
+											},
+											"type": "void",
+											"direction": "return"
+										}
+									]
+								}
+							]
 						},
 						{
 							"_type": "UMLEnumeration",
