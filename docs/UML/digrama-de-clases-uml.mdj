@@ -2277,8 +2277,8 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": -896,
-											"top": -288,
+											"left": -512,
+											"top": -272,
 											"height": 13
 										},
 										{
@@ -2288,8 +2288,8 @@
 												"$ref": "AAAAAAGdiHtyYZJjwt4="
 											},
 											"font": "Arial;13;1",
-											"left": 941,
-											"top": 206,
+											"left": 1133,
+											"top": 214,
 											"width": 343,
 											"height": 13,
 											"text": "com.nethcorp.cuatroenraya.view"
@@ -2302,8 +2302,8 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": -896,
-											"top": -288,
+											"left": -512,
+											"top": -272,
 											"width": 142.33349609375,
 											"height": 13,
 											"text": "(from modelo-de-diseño)"
@@ -2316,15 +2316,15 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": -896,
-											"top": -288,
+											"left": -512,
+											"top": -272,
 											"height": 13,
 											"horizontalAlignment": 1
 										}
 									],
 									"font": "Arial;13;0",
-									"left": 936,
-									"top": 199,
+									"left": 1128,
+									"top": 207,
 									"width": 353,
 									"height": 25,
 									"stereotypeLabel": {
@@ -2343,8 +2343,8 @@
 							],
 							"font": "Arial;13;0",
 							"containerChangeable": true,
-							"left": 936,
-							"top": 184,
+							"left": 1128,
+							"top": 192,
 							"width": 353,
 							"height": 297,
 							"nameCompartment": {

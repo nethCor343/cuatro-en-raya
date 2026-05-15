@@ -18,7 +18,7 @@ public class SimuladorTablero {
 		clonarEstado(tableroOriginal);
 	}
 	
-	public void clonarEstado(Tablero tableroOriginal) {
+	private void clonarEstado(Tablero tableroOriginal) {
 		for(int indiceFila = 0; indiceFila < filas; indiceFila++) {
 			for(int indiceColumna = 0; indiceColumna < columnas; indiceColumna++) {
 				EstadoCelda estado = tableroOriginal.obtenerCelda(indiceFila, indiceColumna);
