@@ -7,6 +7,10 @@ public class Partida {
     private boolean finalizado;
 
     public Partida(int filas, int columnas) {
+    	if (filas <= 0 || columnas <= 0) {
+            throw new IllegalArgumentException("las dimensiones de la partida deben ser mayores a 0");
+        }
+    	
         this.tablero = new Tablero(filas, columnas);
         this.turnos = new GestorTurnos();
         this.reglas = new ReglasJuego();
@@ -19,9 +23,12 @@ public class Partida {
         }
 
         EstadoCelda jugadorActual = turnos.obtenerTurnoActual();
-        int filaColocada = tablero.dejarCaerFicha(indiceColumna, jugadorActual);
-
-        if(filaColocada == -1) {
+        int filaColocada;
+        
+        try {
+            filaColocada = tablero.dejarCaerFicha(indiceColumna, jugadorActual);
+            
+        }catch (IllegalArgumentException | IllegalStateException e) {
             return ResultadoTurno.MOVIMIENTO_INVALIDO;
         }
 
