@@ -40,7 +40,6 @@ public class TableroTest {
     @Test
     public void testDejarCaerFichaApilada() {
         int columnaObjetivo = 3;
-        int filaFondoEsperada = FILAS - 1; //5
         int filaApiladaEsperada = FILAS - 2; //4
         
         tablero.dejarCaerFicha(columnaObjetivo, EstadoCelda.JUGADOR_1); 
