@@ -3,6 +3,7 @@ package com.nethcorp.cuatroenraya.model;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import static org.mockito.Mockito.*;
 
 public class ReglasJuegoTest {
 
@@ -126,6 +127,34 @@ public class ReglasJuegoTest {
         boolean esEmpate = reglas.verificarEmpate(tablero);
 
         assertFalse(esEmpate, "no puede haber empate si el tablero no esta lleno");
+    }
+    
+    @Test
+    public void testVerificarEmpateFalsoConGanador() {
+        tablero.dejarCaerFicha(0, EstadoCelda.JUGADOR_1);
+        tablero.dejarCaerFicha(1, EstadoCelda.JUGADOR_1);
+        tablero.dejarCaerFicha(2, EstadoCelda.JUGADOR_1);
+        tablero.dejarCaerFicha(3, EstadoCelda.JUGADOR_1);
+        reglas.verificarVictoria(tablero, 5, 3);
+
+        Tablero tableroMock = mock(Tablero.class);
+        when(tableroMock.estaLleno()).thenReturn(true);
+        
+        boolean esEmpate = reglas.verificarEmpate(tableroMock);
+        
+        assertFalse(esEmpate, "no puede haber empate si las reglas ya tienen registrado un ganador");
+    }
+
+    @Test
+    public void testVerificarEmpateVerdadero() {
+
+        Tablero tableroMock = mock(Tablero.class);
+        
+        when(tableroMock.estaLleno()).thenReturn(true);
+        
+        boolean esEmpate = reglas.verificarEmpate(tableroMock);
+        
+        assertTrue(esEmpate, "deberia ser empate si el tablero simulado dice estar lleno y no hay ganador registrado");
     }
     
     // tests de excepciones
