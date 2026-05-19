@@ -19,9 +19,9 @@ public class TableroTest {
 
     @Test
     public void testInicializacionTablero() {
-        assertEquals(FILAS, tablero.obtenerFila(), "Las filas no coinciden con la inicializacion");
-        assertEquals(COLUMNAS, tablero.obtenerColumna(), "Las columnas no coinciden con la inicializacion");
-        assertFalse(tablero.estaLleno(), "El tablero no deberia estar lleno al inicio");
+        assertEquals(FILAS, tablero.obtenerFila(), "las filas no coinciden con la inicializacion");
+        assertEquals(COLUMNAS, tablero.obtenerColumna(), "las columnas no coinciden con la inicializacion");
+        assertFalse(tablero.estaLleno(), "el tablero no deberia estar lleno al inicio");
         
         verificarQueElTableroEstaCompletamenteVacio(tablero);
     }
@@ -33,7 +33,7 @@ public class TableroTest {
 
         int filaResultante = tablero.dejarCaerFicha(columnaObjetivo, EstadoCelda.JUGADOR_1);
         
-        assertEquals(filaFondoEsperada, filaResultante, "La ficha deberia haber caido hasta el fondo");
+        assertEquals(filaFondoEsperada, filaResultante, "la ficha deberia haber caido hasta el fondo");
         assertEquals(EstadoCelda.JUGADOR_1, tablero.obtenerCelda(filaFondoEsperada, columnaObjetivo));
     }
 
@@ -46,7 +46,7 @@ public class TableroTest {
         tablero.dejarCaerFicha(columnaObjetivo, EstadoCelda.JUGADOR_1); 
         int filaSegundaFicha = tablero.dejarCaerFicha(columnaObjetivo, EstadoCelda.JUGADOR_2); 
         
-        assertEquals(filaApiladaEsperada, filaSegundaFicha, "La ficha deberia estar justo encima de la anterior");
+        assertEquals(filaApiladaEsperada, filaSegundaFicha, "la ficha deberia estar justo encima de la anterior");
         assertEquals(EstadoCelda.JUGADOR_2, tablero.obtenerCelda(filaApiladaEsperada, columnaObjetivo));
     }
 
@@ -56,7 +56,7 @@ public class TableroTest {
         
         boolean resultado = tablero.estaLleno();
         
-        assertTrue(resultado, "El tablero deberia detectar que esta completamente lleno");
+        assertTrue(resultado, "el tablero deberia detectar que esta completamente lleno");
     }
 
     // tests de excepciones
@@ -65,11 +65,11 @@ public class TableroTest {
     public void testInicializacionTableroInvalida() {
         assertThrows(IllegalArgumentException.class, () -> {
             new Tablero(-1, 7);
-        }, "Deberia lanzar excepcion al crear tablero con filas negativas");
+        }, "deberia lanzar excepcion al crear tablero con filas negativas");
 
         assertThrows(IllegalArgumentException.class, () -> {
             new Tablero(6, 0);
-        }, "Deberia lanzar excepcion al crear tablero con 0 columnas");
+        }, "deberia lanzar excepcion al crear tablero con 0 columnas");
     }
 
     @Test
@@ -79,37 +79,37 @@ public class TableroTest {
 
         assertThrows(IllegalStateException.class, () -> {
             tablero.dejarCaerFicha(columnaObjetivo, EstadoCelda.JUGADOR_2);
-        }, "Deberia lanzar IllegalStateException al tirar en una columna llena");
+        }, "deberia lanzar IllegalStateException al tirar en una columna llena");
     }
 
     @Test
     public void testDejarCaerFichaColumnaInvalida() {
         assertThrows(IllegalArgumentException.class, () -> {
             tablero.dejarCaerFicha(-1, EstadoCelda.JUGADOR_1);
-        }, "Deberia lanzar excepcion por columna negativa");
+        }, "deberia lanzar excepcion por columna negativa");
 
         assertThrows(IllegalArgumentException.class, () -> {
             tablero.dejarCaerFicha(COLUMNAS, EstadoCelda.JUGADOR_1);
-        }, "Deberia lanzar excepcion por columna fuera del limite derecho");
+        }, "deberia lanzar excepcion por columna fuera del limite derecho");
     }
 
     @Test
     public void testObtenerCeldaIndicesInvalidos() {
         assertThrows(IndexOutOfBoundsException.class, () -> {
             tablero.obtenerCelda(-1, 0);
-        }, "Deberia lanzar excepcion por fila negativa");
+        }, "deberia lanzar excepcion por fila negativa");
 
         assertThrows(IndexOutOfBoundsException.class, () -> {
             tablero.obtenerCelda(0, -1);
-        }, "Deberia lanzar excepcion por columna negativa");
+        }, "deberia lanzar excepcion por columna negativa");
 
         assertThrows(IndexOutOfBoundsException.class, () -> {
             tablero.obtenerCelda(FILAS, 0);
-        }, "Deberia lanzar excepcion por fila excedida");
+        }, "deberia lanzar excepcion por fila excedida");
 
         assertThrows(IndexOutOfBoundsException.class, () -> {
             tablero.obtenerCelda(0, COLUMNAS);
-        }, "Deberia lanzar excepcion por columna excedida");
+        }, "deberia lanzar excepcion por columna excedida");
     }
 
     // metodos auxiliares
@@ -118,7 +118,7 @@ public class TableroTest {
         for(int f=0; f<tab.obtenerFila(); f++) {
             for(int c=0; c<tab.obtenerColumna(); c++) {
                 assertEquals(EstadoCelda.VACIO, tab.obtenerCelda(f, c),
-                		"Se encontro una celda no vacia en la inicializacion");
+                		"se encontro una celda no vacia en la inicializacion");
             }
         }
     }

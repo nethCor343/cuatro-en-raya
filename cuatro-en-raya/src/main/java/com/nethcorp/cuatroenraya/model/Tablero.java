@@ -8,7 +8,7 @@ public class Tablero {
 	
 	public Tablero(int fila, int columna) {
 		if(fila <= 0 || columna <= 0) {
-		    throw new IllegalArgumentException("Las dimensiones deben ser mayores a 0");
+		    throw new IllegalArgumentException("las dimensiones deben ser mayores a 0");
 		}
 		
 		this.fila = fila;
@@ -28,7 +28,7 @@ public class Tablero {
 	
 	public int dejarCaerFicha(int columnaFicha, EstadoCelda jugador) {
 		if(columnaFicha < 0 || columnaFicha >= columna) {
-			throw new IllegalArgumentException("La columna " + columnaFicha + " no existe.");
+			throw new IllegalArgumentException("la columna " + columnaFicha + " no existe");
 		}
 		
 		for(int indiceFila = fila - 1; indiceFila >= 0; indiceFila--) {
@@ -39,7 +39,7 @@ public class Tablero {
 			}
 		}
 		
-		throw new IllegalStateException("La columna " + columnaFicha + " ya está llena.");
+		throw new IllegalStateException("la columna " + columnaFicha + " ya esta llena");
 	}
 	
 	public boolean estaLleno() {
@@ -48,7 +48,7 @@ public class Tablero {
 	
 	public EstadoCelda obtenerCelda(int indiceFila, int indiceColumna) {
 		if(indiceFila < 0 || indiceFila >= fila || indiceColumna < 0 || indiceColumna >= columna) {
-			throw new IndexOutOfBoundsException("Coordenadas fuera del tablero.");
+			throw new IndexOutOfBoundsException("coordenadas fuera del tablero");
 		}
 		
 		return celdas[indiceFila][indiceColumna];

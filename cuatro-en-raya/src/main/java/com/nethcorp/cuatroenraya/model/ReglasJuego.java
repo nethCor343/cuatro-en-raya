@@ -9,11 +9,23 @@ public class ReglasJuego {
 	}
 	
 	public boolean verificarVictoria(Tablero tablero, int fila, int columna) {
+		if(tablero == null) {
+            throw new IllegalArgumentException("el tablero no puede ser nulo para verificar la victoria");
+        }
+		
+		if(fila < 0 || fila >= tablero.obtenerFila() || columna < 0 || columna >= tablero.obtenerColumna()) {
+            throw new IndexOutOfBoundsException("coordenadas fuera del tablero: [" + fila + ", " + columna + "]");
+        }
+		
         EstadoCelda ficha = tablero.obtenerCelda(fila, columna);
+        
+        if(ficha == EstadoCelda.VACIO || ficha == null) {
+            throw new IllegalArgumentException("no se puede verificar una victoria en una celda vacia");
+        }
         
         int[][] direcciones = {{0, 1}, {1, 0}, {1, 1}, {1, -1}};
 
-        for (int[] dir : direcciones) {
+        for(int[] dir : direcciones) {
             int pasoFila = dir[0];
             int pasoColumna = dir[1];
             
@@ -21,7 +33,7 @@ public class ReglasJuego {
                 contarConsecutivos(tablero, fila, columna, pasoFila, pasoColumna, ficha) +
                 contarConsecutivos(tablero, fila, columna, -pasoFila, -pasoColumna, ficha);
 
-            if (linea >= FICHAS_PARA_GANAR) {
+            if(linea >= FICHAS_PARA_GANAR) {
                 ganador = ficha;
                 return true;
             }
@@ -34,7 +46,7 @@ public class ReglasJuego {
         int filaActual = fila + pasoFila;
         int columnaActual = columna + pasoColumna;
 
-        while (filaActual >= 0 && filaActual < tablero.obtenerFila() &&
+        while(filaActual >= 0 && filaActual < tablero.obtenerFila() &&
                columnaActual >= 0 && columnaActual < tablero.obtenerColumna() &&
                tablero.obtenerCelda(filaActual, columnaActual) == ficha) {
         	
@@ -47,6 +59,10 @@ public class ReglasJuego {
     }
 	
 	public boolean verificarEmpate(Tablero tablero) {
+		if(tablero == null) {
+            throw new IllegalArgumentException("el tablero no puede ser nulo para verificar un empate");
+        }
+		
         return tablero.estaLleno() && ganador == null;
     }
 
